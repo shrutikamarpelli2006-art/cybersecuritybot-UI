@@ -21,13 +21,14 @@
             <span>CyberShield AI</span>
         </div>
         <nav>
-            <ul>
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
-                <li><a href="#chatbot" class="nav-link">Chatbot</a></li>
-                <li><a href="#knowledge" class="nav-link">Knowledge</a></li>
-                <li><a href="#insights" class="nav-link">Insights</a></li>
-            </ul>
+            <nav>
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#dashboard" class="nav-link">Dashboard</a>
+                <a href="#prediction" class="nav-link">Prediction</a>
+                <a href="#chatbot" class="nav-link">Chatbot</a>
+                <a href="#knowledge" class="nav-link">Knowledge</a>
+                <a href="#insights" class="nav-link">Insights</a>
+            </nav>
         </nav>
         <div class="theme-toggle">
             <i class='bx bxs-moon' id="theme-icon"></i>
@@ -126,6 +127,126 @@
                 <div class="chart-container">
                     <h3>Device Target Distribution</h3>
                     <canvas id="deviceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Prediction Section -->
+        <section id="prediction" class="section-container">
+            <div class="section-header">
+                <h2>AI Threat <span class="neon-text">Prediction</span> Model</h2>
+                <p>Predict cyber threats using machine learning trained on 2015-2024 cybersecurity data</p>
+            </div>
+            
+            <div class="prediction-container">
+                <div class="prediction-form">
+                    <h3>Predict Cyber Attack Risk</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="pred-country">Country</label>
+                            <select id="pred-country">
+                                <option value="">Select Country</option>
+                                <option value="USA">USA</option>
+                                <option value="China">China</option>
+                                <option value="India">India</option>
+                                <option value="UK">UK</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Japan">Japan</option>
+                                <option value="Russia">Russia</option>
+                                <option value="Brazil">Brazil</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pred-industry">Target Industry</label>
+                            <select id="pred-industry">
+                                <option value="">Select Industry</option>
+                                <option value="Banking">Banking & Finance</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Retail">Retail</option>
+                                <option value="IT">IT & Technology</option>
+                                <option value="Education">Education</option>
+                                <option value="Government">Government</option>
+                                <option value="Telecommunications">Telecommunications</option>
+                                <option value="Manufacturing">Manufacturing</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pred-year">Year</label>
+                            <select id="pred-year">
+                                <option value="">Select Year</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pred-vulnerability">Vulnerability Type</label>
+                            <select id="pred-vulnerability">
+                                <option value="">Select Vulnerability</option>
+                                <option value="Unpatched Software">Unpatched Software</option>
+                                <option value="Weak Passwords">Weak Passwords</option>
+                                <option value="Social Engineering">Social Engineering</option>
+                                <option value="Zero-day Exploit">Zero-day Exploit</option>
+                                <option value="Insider Threat">Insider Threat</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button id="predict-btn" class="cta-btn primary">
+                        <i class='bx bx-brain'></i> Predict Threat
+                    </button>
+                </div>
+                
+                <div id="prediction-results" class="prediction-results hidden">
+                    <h3>Prediction Results</h3>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <div class="result-icon">
+                                <i class='bx bx-shield-x'></i>
+                            </div>
+                            <h4>Most Likely Attack Type</h4>
+                            <div id="pred-attack-type" class="result-value">-</div>
+                            <div id="pred-attack-confidence" class="result-confidence">Confidence: -%</div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <div class="result-icon">
+                                <i class='bx bx-dollar-circle'></i>
+                            </div>
+                            <h4>Estimated Financial Loss</h4>
+                            <div id="pred-financial-loss" class="result-value">$-</div>
+                            <div class="result-confidence">Based on historical data</div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <div class="result-icon">
+                                <i class='bx bx-users'></i>
+                            </div>
+                            <h4>Affected Users Estimate</h4>
+                            <div id="pred-affected-users" class="result-value">-</div>
+                            <div class="result-confidence">Range estimate</div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <div class="result-icon">
+                                <i class='bx bx-time-five'></i>
+                            </div>
+                            <h4>Resolution Time</h4>
+                            <div id="pred-resolution-time" class="result-value">-</div>
+                            <div class="result-confidence">Hours to resolve</div>
+                        </div>
+                    </div>
+                    
+                    <div class="risk-assessment">
+                        <h4>Overall Risk Assessment</h4>
+                        <div id="risk-meter" class="risk-meter">
+                            <div class="risk-bar"></div>
+                            <div id="risk-level" class="risk-level">-</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

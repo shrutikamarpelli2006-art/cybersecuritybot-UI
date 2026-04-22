@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const askChatbotBtn = document.getElementById('ask-chatbot-btn');
     const viewInsightsBtn = document.getElementById('view-insights-btn');
     const floatingChatBtn = document.getElementById('floating-chat-btn');
+    const predictBtn = document.getElementById('predict-btn');
+    const predictionResults = document.getElementById('prediction-results');
     const startChatBtn = document.getElementById('start-chat-btn');
     const chatContainer = document.getElementById('chat-container');
     const closeChatBtn = document.getElementById('close-chat');
@@ -111,6 +113,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (viewInsightsBtn) {
         viewInsightsBtn.addEventListener('click', () => scrollToSection('insights'));
+    }
+
+    // Prediction button
+    if (predictBtn) {
+        predictBtn.addEventListener('click', () => {
+            console.log('Predict button clicked');
+            makePrediction();
+        });
     }
 
     // Floating chat button
@@ -818,6 +828,136 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => {
         observer.observe(section, { attributes: true, attributeFilter: ['class'] });
     });
+
+    // Prediction Model
+    const makePrediction = () => {
+        console.log('Making prediction...');
+        
+        const country = document.getElementById('pred-country').value;
+        const industry = document.getElementById('pred-industry').value;
+        const year = document.getElementById('pred-year').value;
+        const vulnerability = document.getElementById('pred-vulnerability').value;
+
+        console.log('Inputs:', { country, industry, year, vulnerability });
+
+        if (!country || !industry || !year || !vulnerability) {
+            alert('Please fill in all fields to make a prediction');
+            return;
+        }
+
+        // Simulate ML prediction based on patterns in the dataset
+        const predictions = {
+            // Attack type predictions based on vulnerability
+            'Unpatched Software': { attack: 'Ransomware', confidence: 78, loss: 45, users: 300000, time: 48 },
+            'Weak Passwords': { attack: 'Phishing', confidence: 85, loss: 25, users: 150000, time: 24 },
+            'Social Engineering': { attack: 'Phishing', confidence: 92, loss: 35, users: 200000, time: 36 },
+            'Zero-day Exploit': { attack: 'Malware', confidence: 88, loss: 65, users: 400000, time: 72 },
+            'Insider Threat': { attack: 'Data Breach', confidence: 75, loss: 55, users: 250000, time: 60 }
+        };
+
+        // Industry-based risk multipliers
+        const industryRisks = {
+            'Banking': 1.8,
+            'Healthcare': 1.5,
+            'IT': 1.6,
+            'Government': 1.7,
+            'Retail': 1.2,
+            'Education': 1.0,
+            'Telecommunications': 1.4,
+            'Manufacturing': 1.3
+        };
+
+        // Country-based adjustments
+        const countryFactors = {
+            'USA': 1.5,
+            'China': 1.4,
+            'India': 1.2,
+            'UK': 1.3,
+            'Germany': 1.2,
+            'Japan': 1.1,
+            'Russia': 1.6,
+            'Brazil': 1.0
+        };
+
+        const basePrediction = predictions[vulnerability] || predictions['Unpatched Software'];
+        const industryMultiplier = industryRisks[industry] || 1.0;
+        const countryFactor = countryFactors[country] || 1.0;
+        const yearMultiplier = parseInt(year) >= 2025 ? 1.3 : 1.0;
+
+        // Calculate final predictions
+        const finalAttack = basePrediction.attack;
+        const finalConfidence = Math.min(95, basePrediction.confidence + (yearMultiplier > 1 ? 5 : 0));
+        const finalLoss = Math.round(basePrediction.loss * industryMultiplier * countryFactor * yearMultiplier);
+        const finalUsers = Math.round(basePrediction.users * countryFactor * yearMultiplier);
+        const finalTime = Math.round(basePrediction.time * (yearMultiplier > 1 ? 0.8 : 1.0));
+
+        // Calculate overall risk score
+        const riskScore = Math.min(100, (finalLoss / 100) * industryMultiplier * countryFactor);
+        const riskLevel = riskScore > 70 ? 'CRITICAL' : riskScore > 50 ? 'HIGH' : riskScore > 30 ? 'MEDIUM' : 'LOW';
+
+        // Display results
+        displayPredictionResults({
+            attackType: finalAttack,
+            confidence: finalConfidence,
+            financialLoss: finalLoss,
+            affectedUsers: finalUsers,
+            resolutionTime: finalTime,
+            riskLevel: riskLevel,
+            riskScore: riskScore
+        });
+    };
+
+    const displayPredictionResults = (results) => {
+        console.log('Displaying results:', results);
+        
+        const attackTypeEl = document.getElementById('pred-attack-type');
+        const confidenceEl = document.getElementById('pred-attack-confidence');
+        const lossEl = document.getElementById('pred-financial-loss');
+        const usersEl = document.getElementById('pred-affected-users');
+        const timeEl = document.getElementById('pred-resolution-time');
+        const riskLevelEl = document.getElementById('risk-level');
+        const riskBar = document.querySelector('.risk-bar');
+        const riskMeter = document.getElementById('risk-meter');
+        
+        if (!attackTypeEl || !confidenceEl || !lossEl || !usersEl || !timeEl || !riskLevelEl) {
+            console.error('Prediction result elements not found');
+            return;
+        }
+        
+        attackTypeEl.textContent = results.attackType;
+        confidenceEl.textContent = `Confidence: ${results.confidence}%`;
+        lossEl.textContent = `$${results.financialLoss}M`;
+        usersEl.textContent = results.affectedUsers.toLocaleString();
+        timeEl.textContent = `${results.resolutionTime}h`;
+        riskLevelEl.textContent = results.riskLevel;
+        
+        predictionResults.classList.remove('hidden');
+        
+        setTimeout(() => {
+            if (riskBar) {
+                riskBar.style.width = `${results.riskScore}%`;
+                console.log('Risk bar width set to:', results.riskScore);
+            }
+            
+            // Color code the risk level
+            if (results.riskLevel === 'CRITICAL') {
+                riskMeter.style.borderColor = '#ff5722';
+                riskLevelEl.style.color = '#ff5722';
+            } else if (results.riskLevel === 'HIGH') {
+                riskMeter.style.borderColor = '#ffc107';
+                riskLevelEl.style.color = '#ffc107';
+            } else if (results.riskLevel === 'MEDIUM') {
+                riskMeter.style.borderColor = '#ff9800';
+                riskLevelEl.style.color = '#ff9800';
+            } else {
+                riskMeter.style.borderColor = '#4caf50';
+                riskLevelEl.style.color = '#4caf50';
+            }
+        }, 100);
+
+        // Scroll to results
+        predictionResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
 
     // Initialize
     loadChatHistory();
