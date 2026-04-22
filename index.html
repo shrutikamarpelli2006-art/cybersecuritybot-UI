@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberSecureBot – Your AI Cybersecurity Assistant</title>
-    <meta name="description" content="CyberSecureBot provides step-by-step cyber-awareness conversations, beginner-friendly explanations, and real-world cyber attack examples to keep you safe.">
+    <title>CyberShield AI – Cybersecurity Threat Analysis & Chatbot System</title>
+    <meta name="description" content="CyberShield AI: A smart platform to analyze global cybersecurity threats using AI and interactive chatbot assistance.">
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <!-- Boxicons for icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Chart.js for analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-theme">
@@ -16,13 +18,15 @@
     <header>
         <div class="logo">
             <i class='bx bx-shield-quarter'></i>
-            <span>CyberSecureBot</span>
+            <span>CyberShield AI</span>
         </div>
         <nav>
             <ul>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="#chatbot" class="nav-link">Chatbot</a></li>
+                <li><a href="#knowledge" class="nav-link">Knowledge</a></li>
+                <li><a href="#insights" class="nav-link">Insights</a></li>
             </ul>
         </nav>
         <div class="theme-toggle">
@@ -31,81 +35,296 @@
     </header>
 
     <main>
-        <!-- Landing Page / Hero Section -->
-        <section id="hero" class="section-container">
+        <!-- Home Section -->
+        <section id="home" class="section-container active-section">
             <div class="hero-content">
-                <h1>Your AI <span class="neon-text">Cybersecurity</span> Assistant</h1>
-                <p>CyberSecureBot provides real-time cyber-awareness, threat analysis, and security guidance tailored to your needs.</p>
-                <button id="start-chat-btn" class="cta-btn">Start Chat <i class='bx bx-message-rounded-dots'></i></button>
+                <h1>CyberShield <span class="neon-text">AI</span></h1>
+                <p class="hero-subtitle">A smart platform to analyze global cybersecurity threats using AI and interactive chatbot assistance.</p>
+                <p class="hero-description">Explore real-time cyber threat intelligence, interactive dashboards, and get expert guidance from our AI-powered cybersecurity assistant.</p>
+                <div class="hero-buttons">
+                    <button id="explore-dashboard-btn" class="cta-btn primary">
+                        <i class='bx bx-bar-chart-alt-2'></i> Explore Dashboard
+                    </button>
+                    <button id="ask-chatbot-btn" class="cta-btn secondary">
+                        <i class='bx bx-message-rounded-dots'></i> Ask Chatbot
+                    </button>
+                    <button id="view-insights-btn" class="cta-btn tertiary">
+                        <i class='bx bx-bulb'></i> View Insights
+                    </button>
+                </div>
             </div>
-            <div class="hero-image">
-                <!-- Abstract cyber graphic or shield -->
+            <div class="hero-visual">
                 <div class="cyber-shield-large">
                     <i class='bx bx-shield-alt-2'></i>
                 </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="section-container">
-            <h2>About <span class="neon-text">CyberSecureBot</span></h2>
-            <div class="about-grid">
-                <div class="about-card">
-                    <i class='bx bx-data'></i>
-                    <h3>What We Collect</h3>
-                    <ul>
-                        <li>Your security concerns</li>
-                        <li>Type of attack to understand</li>
-                        <li>Risk level</li>
-                        <li>Device/network info (non-personal)</li>
-                    </ul>
-                </div>
-                <div class="about-card">
-                    <i class='bx bx-check-shield'></i>
-                    <h3>What We Provide</h3>
-                    <ul>
-                        <li>Threat explanations</li>
-                        <li>Attack prevention tips</li>
-                        <li>Cyber hygiene recommendations</li>
-                        <li>Risk rating & Helpful links</li>
-                    </ul>
+                <div class="floating-elements">
+                    <div class="float-element"><i class='bx bx-lock'></i></div>
+                    <div class="float-element"><i class='bx bx-data'></i></div>
+                    <div class="float-element"><i class='bx bx-shield-x'></i></div>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section id="features" class="section-container">
-            <h2>Core <span class="neon-text">Features</span></h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <i class='bx bx-walk'></i>
-                    <h4>Step-by-step guidance</h4>
-                    <p>Interactive cyber-awareness conversations designed for everyone.</p>
+        <!-- Analytics Dashboard Section -->
+        <section id="dashboard" class="section-container">
+            <div class="section-header">
+                <h2>Threat <span class="neon-text">Analytics</span> Dashboard</h2>
+                <p>Real-time visualization of global cyber threat patterns and trends</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="chart-container">
+                    <h3>Year-wise Cyberattack Trends</h3>
+                    <canvas id="yearTrendsChart"></canvas>
                 </div>
-                <div class="feature-item">
-                    <i class='bx bx-user-voice'></i>
-                    <h4>Beginner-friendly</h4>
-                    <p>No technical knowledge required. We explain things simply.</p>
+                
+                <div class="chart-container">
+                    <h3>Attack Type Distribution</h3>
+                    <canvas id="attackTypeChart"></canvas>
                 </div>
-                <div class="feature-item">
-                    <i class='bx bx-error-alt'></i>
-                    <h4>Real-world examples</h4>
-                    <p>Learn from actual cyber attack scenarios and case studies.</p>
+                
+                <div class="chart-container">
+                    <h3>Country-wise Attack Distribution</h3>
+                    <canvas id="countryChart"></canvas>
                 </div>
-                <div class="feature-item">
-                    <i class='bx bx-laptop'></i>
-                    <h4>Personalized tips</h4>
-                    <p>Get security advice specific to your devices and networks.</p>
+                
+                <div class="chart-container">
+                    <h3>Industry Risk Analysis</h3>
+                    <canvas id="industryChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Vulnerability Trends</h3>
+                    <canvas id="vulnerabilityChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Attack Severity Levels</h3>
+                    <canvas id="severityChart"></canvas>
+                </div>
+                
+                <div class="chart-container wide">
+                    <h3>Financial Loss vs Users Affected</h3>
+                    <canvas id="financialChart"></canvas>
+                </div>
+                
+                <div class="chart-container wide">
+                    <h3>Monthly Attack Patterns</h3>
+                    <canvas id="monthlyChart"></canvas>
+                </div>
+                
+                <div class="chart-container wide">
+                    <h3>Threat Correlation Heatmap</h3>
+                    <div id="heatmapContainer" class="heatmap"></div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Response Time Analysis</h3>
+                    <canvas id="responseChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Device Target Distribution</h3>
+                    <canvas id="deviceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cyber Threat Knowledge Section -->
+        <section id="knowledge" class="section-container">
+            <div class="section-header">
+                <h2>Cyber Threat <span class="neon-text">Knowledge</span> Base</h2>
+                <p>Comprehensive information about cyber threats and prevention strategies</p>
+            </div>
+            
+            <div class="knowledge-grid">
+                <div class="knowledge-card">
+                    <div class="card-icon">
+                        <i class='bx bx-error-circle'></i>
+                    </div>
+                    <h3>Types of Cyberattacks</h3>
+                    <ul>
+                        <li><strong>Phishing:</strong> Deceptive attempts to steal sensitive information</li>
+                        <li><strong>Ransomware:</strong> Malicious software that blocks access until ransom is paid</li>
+                        <li><strong>DDoS Attacks:</strong> Overwhelming systems with traffic to disrupt services</li>
+                        <li><strong>Malware:</strong> Malicious software designed to damage or gain unauthorized access</li>
+                        <li><strong>Man-in-the-Middle:</strong> Intercepting communications between two parties</li>
+                    </ul>
+                </div>
+                
+                <div class="knowledge-card">
+                    <div class="card-icon">
+                        <i class='bx bx-shield-x'></i>
+                    </div>
+                    <h3>Common Vulnerabilities</h3>
+                    <ul>
+                        <li><strong>Weak Passwords:</strong> Easily guessable or reused passwords</li>
+                        <li><strong>Unpatched Software:</strong> Outdated systems with security holes</li>
+                        <li><strong>Lack of Encryption:</strong> Unprotected data transmission</li>
+                        <li><strong>Social Engineering:</strong> Manipulating people into revealing information</li>
+                        <li><strong>Insufficient Access Controls:</strong> Poor permission management</li>
+                    </ul>
+                </div>
+                
+                <div class="knowledge-card">
+                    <div class="card-icon">
+                        <i class='bx bx-check-shield'></i>
+                    </div>
+                    <h3>Prevention Tips</h3>
+                    <ul>
+                        <li>Use strong, unique passwords for all accounts</li>
+                        <li>Enable two-factor authentication (2FA)</li>
+                        <li>Keep software and systems updated</li>
+                        <li>Regularly backup important data</li>
+                        <li>Educate employees about security best practices</li>
+                        <li>Implement network security monitoring</li>
+                    </ul>
+                </div>
+                
+                <div class="knowledge-card">
+                    <div class="card-icon">
+                        <i class='bx bx-file-text'></i>
+                    </div>
+                    <h3>Case Studies</h3>
+                    <ul>
+                        <li><strong>WannaCry (2017):</strong> Global ransomware attack affecting 150+ countries</li>
+                        <li><strong>SolarWinds (2020):</strong> Sophisticated supply chain attack</li>
+                        <li><strong>Colonial Pipeline (2021):</strong> Critical infrastructure ransomware incident</li>
+                        <li><strong>Equifax (2017):</strong> Data breach affecting 147 million people</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insights Section -->
+        <section id="insights" class="section-container">
+            <div class="section-header">
+                <h2>Key <span class="neon-text">Insights</span> & Findings</h2>
+                <p>AI-powered analysis and ML-driven cybersecurity intelligence</p>
+            </div>
+            
+            <div class="insights-grid">
+                <div class="insight-card highlight">
+                    <div class="insight-icon">
+                        <i class='bx bx-trending-up'></i>
+                    </div>
+                    <h3>Most Common Attack</h3>
+                    <div class="insight-value">Phishing</div>
+                    <p>Phishing attacks account for 36% of all reported cyber incidents, making it the most prevalent threat vector.</p>
+                </div>
+                
+                <div class="insight-card highlight">
+                    <div class="insight-icon">
+                        <i class='bx bx-building'></i>
+                    </div>
+                    <h3>Most Affected Industry</h3>
+                    <div class="insight-value">Banking & Finance</div>
+                    <p>Financial institutions experience 43% more attacks than other sectors due to high-value targets.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class='bx bx-globe'></i>
+                    </div>
+                    <h3>High-Risk Countries</h3>
+                    <div class="insight-value">USA, China, India</div>
+                    <p>These countries account for 65% of global cyber attack incidents due to digital infrastructure density.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class='bx bx-dollar-circle'></i>
+                    </div>
+                    <h3>Financial Loss Trends</h3>
+                    <div class="insight-value">+23% YoY Growth</div>
+                    <p>Global cybercrime costs projected to reach $10.5 trillion annually by 2025.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class='bx bx-time-five'></i>
+                    </div>
+                    <h3>Attack Detection Time</h3>
+                    <div class="insight-value">Average: 207 Days</div>
+                    <p>Time to detect and contain breaches has decreased by 15% with improved security measures.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class='bx bx-mobile-alt'></i>
+                    </div>
+                    <h3>Mobile Threats</h3>
+                    <div class="insight-value">+45% Increase</div>
+                    <p>Mobile malware attacks have surged as remote work and mobile banking adoption grows.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class='bx bx-error'></i>
+                    </div>
+                    <h3>Critical Vulnerabilities</h3>
+                    <div class="insight-value">2,100+ in 2024</div>
+                    <p>Critical severity vulnerabilities increased by 32% compared to previous year, requiring immediate patching.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class='bx bx-shield-x'></i>
+                    </div>
+                    <h3>Ransomware Impact</h3>
+                    <div class="insight-value">$4.5M Avg Cost</div>
+                    <p>Average ransomware attack cost increased by 57% due to operational downtime and recovery expenses.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class='bx bx-laptop'></i>
+                    </div>
+                    <h3>Desktop Targets</h3>
+                    <div class="insight-value">35% of Attacks</div>
+                    <p>Desktop systems remain the primary target, followed by mobile devices at 28% and servers at 18%.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class='bx bx-calendar'></i>
+                    </div>
+                    <h3>Peak Attack Months</h3>
+                    <div class="insight-value">July-August</div>
+                    <p>Cyber attacks peak during summer months with 18% more incidents than annual average.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class='bx bx-rocket'></i>
+                    </div>
+                    <h3>Fast Response</h3>
+                    <div class="insight-value">15% < 1 Hour</div>
+                    <p>Only 15% of organizations detect and respond to threats within the critical first hour.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <i class='bx bx-wifi'></i>
+                    </div>
+                    <h3>IoT Vulnerabilities</h3>
+                    <div class="insight-value">12% of Targets</div>
+                    <p>Internet of Things devices increasingly targeted due to weak security protocols and lack of updates.</p>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Floating Chat Button -->
+    <button id="floating-chat-btn" class="floating-chat-btn">
+        <i class='bx bx-message-rounded-dots'></i>
+    </button>
+
     <!-- Chat Widget / Full-screen Chat Overlay -->
     <div id="chat-container" class="chat-container hidden">
         <div class="chat-header">
             <div class="chat-title">
-                <i class='bx bx-shield-quarter'></i> CyberSecureBot
+                <i class='bx bx-shield-quarter'></i> CyberShield AI Assistant
             </div>
             <div class="chat-controls">
                 <button id="clear-chat" title="Clear History"><i class='bx bx-trash'></i></button>
