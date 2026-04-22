@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSecureBot – Your AI Cybersecurity Assistant</title>
+    <meta name="description" content="CyberSecureBot provides step-by-step cyber-awareness conversations, beginner-friendly explanations, and real-world cyber attack examples to keep you safe.">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Boxicons for icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class='bx bx-shield-quarter'></i>
+            <span>CyberSecureBot</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+            </ul>
+        </nav>
+        <div class="theme-toggle">
+            <i class='bx bxs-moon' id="theme-icon"></i>
+        </div>
+    </header>
+
+    <main>
+        <!-- Landing Page / Hero Section -->
+        <section id="hero" class="section-container">
+            <div class="hero-content">
+                <h1>Your AI <span class="neon-text">Cybersecurity</span> Assistant</h1>
+                <p>CyberSecureBot provides real-time cyber-awareness, threat analysis, and security guidance tailored to your needs.</p>
+                <button id="start-chat-btn" class="cta-btn">Start Chat <i class='bx bx-message-rounded-dots'></i></button>
+            </div>
+            <div class="hero-image">
+                <!-- Abstract cyber graphic or shield -->
+                <div class="cyber-shield-large">
+                    <i class='bx bx-shield-alt-2'></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section-container">
+            <h2>About <span class="neon-text">CyberSecureBot</span></h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class='bx bx-data'></i>
+                    <h3>What We Collect</h3>
+                    <ul>
+                        <li>Your security concerns</li>
+                        <li>Type of attack to understand</li>
+                        <li>Risk level</li>
+                        <li>Device/network info (non-personal)</li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <i class='bx bx-check-shield'></i>
+                    <h3>What We Provide</h3>
+                    <ul>
+                        <li>Threat explanations</li>
+                        <li>Attack prevention tips</li>
+                        <li>Cyber hygiene recommendations</li>
+                        <li>Risk rating & Helpful links</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section-container">
+            <h2>Core <span class="neon-text">Features</span></h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class='bx bx-walk'></i>
+                    <h4>Step-by-step guidance</h4>
+                    <p>Interactive cyber-awareness conversations designed for everyone.</p>
+                </div>
+                <div class="feature-item">
+                    <i class='bx bx-user-voice'></i>
+                    <h4>Beginner-friendly</h4>
+                    <p>No technical knowledge required. We explain things simply.</p>
+                </div>
+                <div class="feature-item">
+                    <i class='bx bx-error-alt'></i>
+                    <h4>Real-world examples</h4>
+                    <p>Learn from actual cyber attack scenarios and case studies.</p>
+                </div>
+                <div class="feature-item">
+                    <i class='bx bx-laptop'></i>
+                    <h4>Personalized tips</h4>
+                    <p>Get security advice specific to your devices and networks.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chat Widget / Full-screen Chat Overlay -->
+    <div id="chat-container" class="chat-container hidden">
+        <div class="chat-header">
+            <div class="chat-title">
+                <i class='bx bx-shield-quarter'></i> CyberSecureBot
+            </div>
+            <div class="chat-controls">
+                <button id="clear-chat" title="Clear History"><i class='bx bx-trash'></i></button>
+                <button id="close-chat" title="Close Chat"><i class='bx bx-x'></i></button>
+            </div>
+        </div>
+        
+        <div id="chat-messages" class="chat-messages">
+            <!-- Messages will be injected here -->
+            <div class="message bot-message">
+                <div class="avatar"><i class='bx bx-shield-quarter'></i></div>
+                <div class="message-content">
+                    <p>Hello! I'm CyberSecureBot. How can I help you stay safe online today?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Typing Indicator -->
+        <div id="typing-indicator" class="typing-indicator hidden">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="user-input" placeholder="Type your message... (Press Enter to send)" autocomplete="off">
+            <button id="send-btn"><i class='bx bx-send'></i></button>
+        </div>
+    </div>
+
+    <!-- Audio Effects (Optional) -->
+    <!-- Using base64 or public URLs for simple blips would be ideal, but for now we'll handle sound in JS with simple oscillators if needed or omit to keep it simple -->
+    
+    <script src="script.js"></script>
+</body>
+</html>
