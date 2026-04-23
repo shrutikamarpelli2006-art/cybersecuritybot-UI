@@ -20,18 +20,20 @@
             <i class='bx bx-shield-quarter'></i>
             <span>CyberShield AI</span>
         </div>
-        <nav>
-            <nav>
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#dashboard" class="nav-link">Dashboard</a>
-                <a href="#prediction" class="nav-link">Prediction</a>
-                <a href="#chatbot" class="nav-link">Chatbot</a>
-                <a href="#knowledge" class="nav-link">Knowledge</a>
-                <a href="#insights" class="nav-link">Insights</a>
-            </nav>
+        <nav class="navbar">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#dashboard" class="nav-link">Dashboard</a>
+            <a href="#data-understanding" class="nav-link">Data Analysis</a>
+            <a href="#country-data" class="nav-link">Country Data</a>
+            <a href="#prediction" class="nav-link">Prediction</a>
+            <a href="#knowledge" class="nav-link">Knowledge</a>
+            <a href="#insights" class="nav-link">Insights</a>
         </nav>
-        <div class="theme-toggle">
-            <i class='bx bxs-moon' id="theme-icon"></i>
+        <div class="header-actions">
+            <div class="theme-toggle">
+                <i class='bx bxs-moon' id="theme-icon"></i>
+            </div>
+            <i class='bx bx-menu' id="menu-icon"></i>
         </div>
     </header>
 
@@ -131,6 +133,210 @@
             </div>
         </section>
 
+        <!-- Country Past Data Section -->
+        <section id="country-data" class="section-container">
+            <div class="section-header">
+                <h2>Country <span class="neon-text">Past Data</span></h2>
+                <p>Select a country to view detailed historical cyber attack data and predictions</p>
+            </div>
+            
+            <div class="country-selector">
+                <div class="selector-form">
+                    <label for="country-select">Select Country:</label>
+                    <select id="country-select">
+                        <option value="">Choose a country...</option>
+                        <option value="usa">USA</option>
+                        <option value="china">China</option>
+                        <option value="india">India</option>
+                        <option value="uk">UK</option>
+                        <option value="germany">Germany</option>
+                        <option value="japan">Japan</option>
+                        <option value="russia">Russia</option>
+                        <option value="brazil">Brazil</option>
+                    </select>
+                    <button id="load-country-data" class="cta-btn primary">
+                        <i class='bx bx-search'></i> Load Data
+                    </button>
+                </div>
+            </div>
+            
+            <div id="country-data-display" class="country-data-display hidden">
+                <div class="data-overview">
+                    <div class="overview-card">
+                        <h3>Attack Statistics</h3>
+                        <div class="stats-row">
+                            <div class="stat-item">
+                                <span class="stat-label">Total Attacks:</span>
+                                <span id="country-total-attacks" class="stat-value">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Avg Financial Loss:</span>
+                                <span id="country-avg-loss" class="stat-value">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Most Common Attack:</span>
+                                <span id="country-common-attack" class="stat-value">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Avg Resolution Time:</span>
+                                <span id="country-resolution-time" class="stat-value">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <h3>Year-wise Breakdown</h3>
+                        <div id="country-year-chart" class="year-chart">
+                            <canvas id="countryYearChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detailed-analysis">
+                    <h3>Attack Type Distribution</h3>
+                    <div id="country-attack-types" class="attack-types-grid">
+                        <!-- Will be populated dynamically -->
+                    </div>
+                </div>
+        </section>
+
+        <!-- Past Data Analysis Section -->
+        <section id="past-analysis" class="section-container">
+            <div class="section-header">
+                <h2>Past Attack <span class="neon-text">Analysis</span></h2>
+                <p>Historical cyber attack patterns and percentage breakdown by country and year</p>
+            </div>
+            
+            <div class="past-data-grid">
+                <div class="country-analysis">
+                    <h3>Country-wise Attack Distribution</h3>
+                    <div class="country-stats">
+                        <div class="country-item">
+                            <span class="country-name">USA</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 35%; background: #0066ff;"></div>
+                            </div>
+                            <span class="percentage">35%</span>
+                        </div>
+                        <div class="country-item">
+                            <span class="country-name">China</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 22%; background: #00aaff;"></div>
+                            </div>
+                            <span class="percentage">22%</span>
+                        </div>
+                        <div class="country-item">
+                            <span class="country-name">India</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 15%; background: #0066ff;"></div>
+                            </div>
+                            <span class="percentage">15%</span>
+                        </div>
+                        <div class="country-item">
+                            <span class="country-name">UK</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 12%; background: #00aaff;"></div>
+                            </div>
+                            <span class="percentage">12%</span>
+                        </div>
+                        <div class="country-item">
+                            <span class="country-name">Germany</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 8%; background: #0066ff;"></div>
+                            </div>
+                            <span class="percentage">8%</span>
+                        </div>
+                        <div class="country-item">
+                            <span class="country-name">Others</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 8%; background: #00aaff;"></div>
+                            </div>
+                            <span class="percentage">8%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="year-analysis">
+                    <h3>Year-wise Attack Trends</h3>
+                    <div class="year-stats">
+                        <div class="year-item">
+                            <span class="year">2015</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 12%; background: #ff4757;"></div>
+                            </div>
+                            <span class="percentage">12%</span>
+                        </div>
+                        <div class="year-item">
+                            <span class="year">2016</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 14%; background: #ff6b6b;"></div>
+                            </div>
+                            <span class="percentage">14%</span>
+                        </div>
+                        <div class="year-item">
+                            <span class="year">2017</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 16%; background: #ff8787;"></div>
+                            </div>
+                            <span class="percentage">16%</span>
+                        </div>
+                        <div class="year-item">
+                            <span class="year">2018</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 18%; background: #ff4757;"></div>
+                            </div>
+                            <span class="percentage">18%</span>
+                        </div>
+                        <div class="year-item">
+                            <span class="year">2019</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%; background: #ff6b6b;"></div>
+                            </div>
+                            <span class="percentage">20%</span>
+                        </div>
+                        <div class="year-item">
+                            <span class="year">2020-2024</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%; background: #ff8787;"></div>
+                            </div>
+                            <span class="percentage">20%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="financial-impact">
+                <h3>Financial Impact by Country (Million $)</h3>
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <div class="impact-country">USA</div>
+                        <div class="impact-amount">$980M</div>
+                        <div class="impact-percentage">42% of total loss</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-country">China</div>
+                        <div class="impact-amount">$620M</div>
+                        <div class="impact-percentage">27% of total loss</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-country">India</div>
+                        <div class="impact-amount">$380M</div>
+                        <div class="impact-percentage">16% of total loss</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-country">UK</div>
+                        <div class="impact-amount">$240M</div>
+                        <div class="impact-percentage">10% of total loss</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-country">Others</div>
+                        <div class="impact-amount">$110M</div>
+                        <div class="impact-percentage">5% of total loss</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- AI Prediction Section -->
         <section id="prediction" class="section-container">
             <div class="section-header">
@@ -176,9 +382,11 @@
                             <label for="pred-year">Year</label>
                             <select id="pred-year">
                                 <option value="">Select Year</option>
-                                <option value="2024">2024</option>
-                                <option value="2025">2025</option>
                                 <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
                             </select>
                         </div>
                         
@@ -245,6 +453,110 @@
                         <div id="risk-meter" class="risk-meter">
                             <div class="risk-bar"></div>
                             <div id="risk-level" class="risk-level">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Understanding Section -->
+        <section id="data-understanding" class="section-container">
+            <div class="section-header">
+                <h2>Dataset <span class="neon-text">Understanding</span></h2>
+                <p>Explore the cybersecurity threat data from 2015-2024 with interactive visualizations</p>
+            </div>
+            
+            <div class="data-stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class='bx bx-data'></i>
+                    </div>
+                    <h3>Total Records</h3>
+                    <div class="stat-value">36,002</div>
+                    <p>Actual cybersecurity incidents from 2015-2024</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class='bx bx-calendar'></i>
+                    </div>
+                    <h3>Time Period</h3>
+                    <div class="stat-value">10 Years</div>
+                    <p>2015-2024 real historical data analysis</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class='bx bx-globe'></i>
+                    </div>
+                    <h3>Countries</h3>
+                    <div class="stat-value">8</div>
+                    <p>Major countries: USA, China, India, UK, Germany, Japan, Russia, Brazil</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class='bx bx-building'></i>
+                    </div>
+                    <h3>Industries</h3>
+                    <div class="stat-value">8</div>
+                    <p>Banking, Healthcare, Retail, IT, Education, Government, Telecom, Manufacturing</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class='bx bx-shield-x'></i>
+                    </div>
+                    <h3>Attack Types</h3>
+                    <div class="stat-value">5</div>
+                    <p>Phishing, Ransomware, MITM, Malware, SQL Injection, Data Breach</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class='bx bx-dollar-circle'></i>
+                    </div>
+                    <h3>Total Loss</h3>
+                    <div class="stat-value">$2.33B</div>
+                    <p>Calculated from actual financial loss data</p>
+                </div>
+            </div>
+            
+            <div class="data-insights">
+                <h3>Key Dataset Insights</h3>
+                <div class="insights-list">
+                    <div class="insight-item">
+                        <i class='bx bx-trending-up'></i>
+                        <div>
+                            <strong>Trending Upward:</strong> Cyber attacks increased by 250% from 2015 to 2024
+                        </div>
+                    </div>
+                    
+                    <div class="insight-item">
+                        <i class='bx bx-target-lock'></i>
+                        <div>
+                            <strong>Primary Targets:</strong> Banking (28%), Healthcare (22%), IT (18%)
+                        </div>
+                    </div>
+                    
+                    <div class="insight-item">
+                        <i class='bx bx-error'></i>
+                        <div>
+                            <strong>Most Critical:</strong> Ransomware attacks with 67% increase in recent years
+                        </div>
+                    </div>
+                    
+                    <div class="insight-item">
+                        <i class='bx bx-time-five'></i>
+                        <div>
+                            <strong>Avg Resolution:</strong> 42 hours per incident, decreasing by 15% with improved defenses
+                        </div>
+                    </div>
+                    
+                    <div class="insight-item">
+                        <i class='bx bx-map'></i>
+                        <div>
+                            <strong>Global Hotspots:</strong> USA (35%), China (22%), India (15%) lead in attack volume
                         </div>
                     </div>
                 </div>
@@ -449,18 +761,12 @@
             </div>
             <div class="chat-controls">
                 <button id="clear-chat" title="Clear History"><i class='bx bx-trash'></i></button>
-                <button id="close-chat" title="Close Chat"><i class='bx bx-x'></i></button>
+                <button id="close-chat" title="Close Chat" class="close-btn"><i class='bx bx-x'></i> Close</button>
             </div>
         </div>
         
         <div id="chat-messages" class="chat-messages">
             <!-- Messages will be injected here -->
-            <div class="message bot-message">
-                <div class="avatar"><i class='bx bx-shield-quarter'></i></div>
-                <div class="message-content">
-                    <p>Hello! I'm CyberSecureBot. How can I help you stay safe online today?</p>
-                </div>
-            </div>
         </div>
 
         <!-- Typing Indicator -->
